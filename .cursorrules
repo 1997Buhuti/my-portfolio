@@ -1,0 +1,21 @@
+# Portfolio Code Rules
+
+## Declarative Code
+- Prefer declarative patterns: `.map()`, `.filter()`, `.find()`, and derived data.
+- Never imperatively query or mutate the DOM (`document.querySelector`, `getElementById`, etc.).
+- Express UI as a function of props/state/data — not sequential side effects.
+
+## Strict TypeScript
+- Enable and respect strict TypeScript. Never use `any`.
+- Export reusable interfaces and types from shared modules (e.g. `data/portfolio.ts`).
+- Prefer typed props, discriminated unions, and exhaustiveness over loose objects.
+
+## Server Components by Default
+- App Router pages and layouts are Server Components unless interactivity is required.
+- Add `"use client"` only at leaf components that need hooks, browser APIs, or event handlers.
+- Keep data fetching and static composition on the server; push client boundaries down.
+
+## Self-Documenting Code
+- Name files, components, props, and variables clearly enough that comments are rarely needed.
+- Avoid narrating what the code does. Comment only non-obvious intent or constraints.
+- Prefer small, focused components over large files with explanatory blocks.
