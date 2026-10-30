@@ -131,6 +131,37 @@ export interface Project {
   caseStudy?: CaseStudy;
 }
 
+export type DeviconVariant =
+  | "original"
+  | "original-wordmark"
+  | "plain"
+  | "plain-wordmark"
+  | "line"
+  | "line-wordmark";
+
+export type TechIconProvider = "devicon" | "simpleicons" | "local";
+
+  /**
+   * Icon slug for the chosen provider:
+   * - `devicon`: folder name (e.g. `typescript`)
+   * - `simpleicons`: brand slug (e.g. `mixpanel`)
+   * - `local`: filename under `/icons/` without extension (e.g. `synthflow`)
+   */
+export interface TechItem {
+  name: string;
+  icon?: string;
+  provider?: TechIconProvider;
+  variant?: DeviconVariant;
+  /** Force invert for near-black glyphs on the dark surface. */
+  invert?: boolean;
+}
+
+export interface TechCategory {
+  id: string;
+  title: string;
+  items: TechItem[];
+}
+
 export interface PortfolioData {
   personal: PersonalInfo;
   stats: Stat[];
@@ -138,6 +169,10 @@ export interface PortfolioData {
     paragraphs: string[];
     philosophy: string;
     competencies: Competency[];
+  };
+  techStack: {
+    description: string;
+    categories: TechCategory[];
   };
   experience: Experience[];
   education: Education[];
@@ -154,9 +189,9 @@ export const portfolioData: PortfolioData = {
     monogram: "<B/M>",
     title: "AWS Community Builder & Full-Stack Software Engineer",
     tagline:
-      "I engineer scalable production web applications, serverless architectures, and agentic AI automations.",
+      "I engineer scalable production systems, AI-driven development workflows, and human-touched software that cuts through AI slop.",
     summary:
-      "Full-stack engineer specializing in Node.js, TypeScript, Angular, and AWS serverless systems. Recent focus includes AI-assisted CRM workflows, agentic automations, and Synthflow AI voice operators that improve operational efficiency.",
+      "Full-stack engineer specializing in Node.js, TypeScript, Angular, and AWS serverless systems. Expert in AI-driven development workflows, AI SDLC, and spec-driven development, with a focus on replacing AI slop with human-crafted, production-ready software.",
     email: "dp.manakal82@gmail.com",
     location: "Sri Lanka · Remote",
     availability: "Open to opportunities & collaborations",
@@ -182,18 +217,19 @@ export const portfolioData: PortfolioData = {
     ],
   },
   stats: [
-    { value: "4+", label: "Yrs Experience", accent: "primary" },
+    { value: "5+", label: "Yrs Experience", accent: "primary" },
     { value: "44k+", label: "Daily Lambda Invokes", accent: "secondary" },
     { value: "AWS", label: "Community Builder", accent: "primary" },
     { value: "18/19", label: "Angular Migration", accent: "secondary" },
   ],
   about: {
     paragraphs: [
-      "I am an AWS Community Builder & Full-Stack Software Engineer with over 4 years of experience engineering scalable production web applications, microservices, and serverless architectures. My recent focus has been on AI-assisted CRM workflows, developing agentic automations (Cursor AI/Grok Bot), and integrating AI voice operators (Synthflow AI) to significantly enhance operational efficiency.",
-      "I am highly adept at building responsive, declarative UIs using modern frameworks like Angular and React, managing end-to-end database migrations, and configuring automated CI/CD pipelines across diverse cloud environments.",
+      "I am an AWS Community Builder & Full-Stack Software Engineer with over 5 years of experience engineering scalable production web applications, microservices, and serverless architectures. My recent focus has been on AI-assisted CRM workflows, developing agentic automations (Cursor AI/Grok Bot), and integrating AI voice operators (Synthflow AI) to significantly enhance operational efficiency.",
+      "I am highly adept at building responsive, declarative UIs using modern frameworks like Angular and React, managing end-to-end database migrations, and configuring automated CI/CD pipelines across diverse cloud environments. I specialize in AI-driven development workflows, automation, and AI SDLC, and I am a strong enthusiast of spec-driven development.",
+      "I am especially interested in fixing AI-generated slop by bringing back a human touch: craft, judgment, and polish that models alone miss. I am open to companies that need help removing AI slop from their products and shipping software that feels intentional and production-ready.",
     ],
     philosophy:
-      "Ship production systems that scale under real load — serverless event flows, declarative UIs, and AI automations that remove operational friction.",
+      "Use AI to move faster, then apply human craft so the result is not slop. Spec-driven workflows, AI SDLC, and production systems that scale under real load.",
     competencies: [
       {
         index: "01 / SERVERLESS",
@@ -204,11 +240,11 @@ export const portfolioData: PortfolioData = {
         accent: "primary",
       },
       {
-        index: "02 / AI WORKFLOWS",
-        title: "Agentic AI",
-        subtitle: "Automations",
+        index: "02 / AI SDLC",
+        title: "AI-Driven Dev",
+        subtitle: "Workflows & Specs",
         description:
-          "Cursor AI, custom bugbot CI integrations, and Synthflow AI voice agents wired into CRM via webhooks.",
+          "AI SDLC, spec-driven development, Cursor AI automations, and human review that strips AI slop from shipped code.",
         accent: "secondary",
       },
       {
@@ -219,6 +255,104 @@ export const portfolioData: PortfolioData = {
           "Signal-based Angular UIs, Node.js APIs, hybrid MySQL/MongoDB/Redis data stores, and CI/CD observability.",
         accent: "primary",
       },
+    ],
+  },
+  techStack: {
+    description:
+      "Languages, frameworks, cloud services, and tooling from production work across serverless CRM systems, Angular migrations, and AI workflow automations.",
+    categories: [
+    {
+      id: "languages",
+      title: "Languages & Runtimes",
+      items: [
+        { name: "TypeScript", icon: "typescript", variant: "original" },
+        { name: "JavaScript", icon: "javascript", variant: "original" },
+        { name: "Node.js", icon: "nodejs", variant: "original" },
+        { name: "C#", icon: "csharp", variant: "original" },
+        { name: "Java", icon: "java", variant: "original" },
+      ],
+    },
+    {
+      id: "frontend",
+      title: "Frontend",
+      items: [
+        { name: "Angular", icon: "angular", variant: "original" },
+        { name: "React", icon: "react", variant: "original" },
+        {
+          name: "Next.js",
+          icon: "nextdotjs/ffffff",
+          provider: "simpleicons",
+        },
+        { name: "Redux", icon: "redux", variant: "original" },
+        { name: "SCSS", icon: "sass", variant: "original" },
+        { name: "Bootstrap", icon: "bootstrap", variant: "original" },
+      ],
+    },
+    {
+      id: "cloud",
+      title: "Cloud & Backend",
+      items: [
+        { name: "AWS", icon: "amazonwebservices", variant: "original" },
+        { name: ".NET Core", icon: "dotnetcore", variant: "original" },
+        { name: "Express", icon: "express", variant: "original" },
+        { name: "REST APIs" },
+      ],
+    },
+    {
+      id: "data",
+      title: "Data Stores",
+      items: [
+        { name: "MySQL", icon: "mysql", variant: "original" },
+        { name: "MongoDB", icon: "mongodb", variant: "original" },
+        { name: "Redis", icon: "redis", variant: "original" },
+        {
+          name: "SQL Server",
+          icon: "microsoftsqlserver",
+          variant: "original",
+        },
+      ],
+    },
+    {
+      id: "tooling",
+      title: "Tooling & Observability",
+      items: [
+        { name: "Git", icon: "git", variant: "original" },
+        { name: "GitHub", icon: "github", variant: "original" },
+        { name: "VS Code", icon: "vscode", variant: "original" },
+        { name: "Visual Studio", icon: "visualstudio", variant: "original" },
+        { name: "IntelliJ IDEA", icon: "intellij", variant: "original" },
+        { name: "WebStorm", icon: "webstorm", variant: "original" },
+        { name: "Sentry", icon: "sentry", variant: "original" },
+        { name: "TypeORM", icon: "typeorm", provider: "simpleicons" },
+        { name: "Mongoose", icon: "mongoose", provider: "simpleicons" },
+        {
+          name: "Serverless Framework",
+          icon: "serverless",
+          provider: "simpleicons",
+        },
+      ],
+    },
+    {
+      id: "ai",
+      title: "AI & Automation",
+      items: [
+        { name: "Synthflow AI", icon: "synthflow", provider: "local" },
+        {
+          name: "Cursor AI",
+          icon: "cursor",
+          provider: "simpleicons",
+          invert: true,
+        },
+        {
+          name: "AWS Kiro",
+          icon: "kiro",
+          provider: "local",
+          invert: true,
+        },
+        { name: "Mixpanel", icon: "mixpanel", provider: "simpleicons" },
+        { name: "Hotjar", icon: "hotjar", provider: "simpleicons" },
+      ],
+    },
     ],
   },
   experience: [
@@ -258,17 +392,19 @@ export const portfolioData: PortfolioData = {
       startDate: "Oct 2022",
       endDate: "May 2023",
       description:
-        "Built Node.js serverless REST APIs and Angular UI components, migrated modules to Angular 16, and established CloudWatch, Sentry, and Mixpanel observability.",
+        "Built Node.js serverless REST APIs and Angular UI components, migrated modules to Angular 16, and established CloudWatch, Sentry, Mixpanel, and Hotjar observability.",
       highlights: [
         "Developed and maintained Node.js serverless REST API endpoints alongside dynamic Angular UI components.",
         "Successfully executed the migration of frontend modules from Angular 15 to 16, resolving deprecations.",
-        "Established comprehensive application observability by integrating AWS CloudWatch, Sentry for error tracking, and Mixpanel.",
+        "Established comprehensive application observability by integrating AWS CloudWatch, Sentry for error tracking, Mixpanel, and Hotjar.",
       ],
       technologies: [
         "Node.js",
         "Angular 16",
         "AWS CloudWatch",
         "Sentry",
+        "Mixpanel",
+        "Hotjar",
         "REST APIs",
       ],
       accent: "secondary",
@@ -342,30 +478,34 @@ export const portfolioData: PortfolioData = {
   ],
   projects: [
     {
-      id: "proj-ai-crm",
-      slug: "ai-crm-automations",
-      title: "AI-Assisted CRM & Voice Workflows",
-      category: "Enterprise CRM · Agentic AI",
+      id: "proj-bodyshop-booster",
+      slug: "bodyshop-booster",
+      title: "BodyShop Booster",
+      category: "SaaS CRM · Collision Repair",
+      versionLabel: "Boost CRM + API",
       description:
-        "Agentic AI automations and Synthflow AI voice integrations for enterprise CRM.",
+        "Multi-tenant AI CRM and serverless API platform serving 300+ body shops and MSOs across the US and Canada.",
       longDescription:
-        "Engineered robust AI-assisted CRM workflows for BodyShop Booster, utilizing Cursor AI, Kilo, and custom bugbot integrations. A major feature included orchestrating a fully automated call-answering system using Synthflow AI voice agents connected via webhooks. The backend runs on a highly scalable, event-driven AWS serverless architecture processing over 44,000 Lambda invocations daily.",
+        "BodyShop Booster is a Calgary-based multi-tenant SaaS CRM for collision and auto body shops — serving 300+ shops and MSOs across the US and Canada. Built to stop lost repairs from missed calls, slow replies, and weak follow-up. As a Software Engineer on Boost CRM and Boost API at Random Software Ltd, I help ship the production product shops use daily: an Angular CRM for lead intake, estimates, booking, and customer communications, backed by a modular Node.js serverless API on AWS. The platform captures leads from DRPs, agents, dealerships, fleets, OEMs, and customer-pay sources; answers in seconds with AI sales and Synthflow voice agents; and automates estimate follow-up, self-scheduling, e-sign, reviews, and outbound integrations (including Open API /repair matching and Zapier). The event-driven Boost API layer processes 44k+ Lambda invocations daily across API Gateway, SQS, SNS, and EventBridge, with hybrid MySQL, MongoDB, and Redis data stores.",
       technologies: [
+        "Angular 18/19",
         "Node.js",
         "TypeScript",
         "AWS Lambda",
-        "Synthflow AI",
-        "EventBridge",
         "Serverless Framework",
+        "MySQL",
+        "MongoDB",
+        "Redis",
+        "Synthflow AI",
+        "Open API",
       ],
       featured: true,
-      year: "2025",
+      year: "2023–Present",
       accent: "primary",
       coverImage: "/dummy-project-1.jpg",
-      liveUrl: "https://example.com/crm-demo",
-      githubUrl: "https://github.com/1997Buhuti/dummy-crm-repo",
+      liveUrl: "https://bodyshopbooster.com/",
       architectureNotes:
-        "Event-driven Lambda · Synthflow webhooks · SQS/SNS/EventBridge · Serverless Framework",
+        "Large-scale serverless backend on AWS, built with TypeScript/Node.js and the Serverless Framework. The API is split across multiple CloudFormation stacks (shared infra + domain stacks) behind API Gateway and Lambda, with event-driven work via SQS / SNS / EventBridge. Data is polyglot—MySQL (TypeORM), MongoDB (Mongoose), and Redis—organized as modular domain services with shared middleware, auth, and observability. Deployed across dev / QA / staging / production via CI/CD.",
     },
     {
       id: "proj-react-ecommerce",
@@ -389,7 +529,7 @@ export const portfolioData: PortfolioData = {
   contact: {
     heading: "Let's build something remarkable.",
     subheading:
-      "Whether you need serverless architecture, Angular/React product engineering, or AI-assisted workflow automation, my inbox is open.",
+      "Whether you need serverless architecture, AI-driven SDLC and spec-driven workflows, or help removing AI slop with a human touch, my inbox is open.",
   },
 };
 

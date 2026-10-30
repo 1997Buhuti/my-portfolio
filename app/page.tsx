@@ -12,6 +12,7 @@ import {
 
 import { CopyEmailButton } from "@/components/copy-email-button";
 import { GitHubIcon, LinkedInIcon } from "@/components/social-icons";
+import { TechIcon } from "@/components/tech-icon";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
@@ -37,8 +38,16 @@ const accentChip = {
 } as const;
 
 export default function HomePage() {
-  const { personal, stats, about, experience, education, projects, contact } =
-    portfolioData;
+  const {
+    personal,
+    stats,
+    about,
+    techStack,
+    experience,
+    education,
+    projects,
+    contact,
+  } = portfolioData;
 
   const featuredProjects = projects.filter((project) => project.featured);
   const primaryEducation = education[0];
@@ -235,13 +244,46 @@ export default function HomePage() {
         </section>
 
         <section
+          id="tech-stack"
+          className="scroll-mt-24 flex flex-col gap-6 lg:gap-8"
+        >
+          <div className="flex items-center gap-3 border-b border-hairline pb-4">
+            <span className="font-mono text-sm font-bold text-primary">
+              02 //
+            </span>
+            <h2 className="font-sans text-xl font-semibold tracking-wider text-on-surface uppercase sm:text-2xl">
+              Tech Stack
+            </h2>
+          </div>
+
+          <p className="max-w-2xl font-mono text-sm leading-relaxed text-on-surface-variant lg:text-base">
+            {techStack.description}
+          </p>
+
+          <div className="flex flex-col gap-8">
+            {techStack.categories.map((category) => (
+              <div key={category.id} className="flex flex-col gap-3">
+                <h3 className="font-mono text-[11px] font-medium tracking-[0.14em] text-primary uppercase">
+                  {category.title}
+                </h3>
+                <div className="grid grid-cols-3 gap-2.5 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-6">
+                  {category.items.map((item) => (
+                    <TechIcon key={`${category.id}-${item.name}`} item={item} />
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section
           id="experience"
           className="scroll-mt-24 flex flex-col gap-6 lg:gap-8"
         >
           <div className="flex items-center justify-between border-b border-hairline pb-4">
             <div className="flex items-center gap-3">
               <span className="font-mono text-sm font-bold text-primary">
-                02 //
+                03 //
               </span>
               <h2 className="font-sans text-xl font-semibold tracking-wider text-on-surface uppercase sm:text-2xl">
                 Experience &amp; Path
@@ -353,7 +395,7 @@ export default function HomePage() {
           <div className="flex items-center justify-between border-b border-hairline pb-4">
             <div className="flex items-center gap-3">
               <span className="font-mono text-sm font-bold text-primary">
-                03 //
+                04 //
               </span>
               <h2 className="font-sans text-xl font-semibold tracking-wider text-on-surface uppercase sm:text-2xl">
                 Featured Work
@@ -517,7 +559,7 @@ export default function HomePage() {
           <div className="flex items-center justify-between border-b border-hairline pb-4">
             <div className="flex items-center gap-3">
               <span className="font-mono text-sm font-bold text-primary">
-                04 //
+                05 //
               </span>
               <h2 className="font-sans text-xl font-semibold tracking-wider text-on-surface uppercase sm:text-2xl">
                 Get In Touch
