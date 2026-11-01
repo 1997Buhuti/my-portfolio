@@ -10,6 +10,7 @@ import {
   Gauge,
   GraphHub,
   Layers,
+  Lock,
   MoveHorizontal,
   TrendingUp,
   TriangleAlert,
@@ -579,6 +580,16 @@ function BasicProjectDetail({
       <p className="mt-5 max-w-2xl font-mono text-sm leading-relaxed text-on-surface-variant sm:text-base">
         {project.longDescription}
       </p>
+      {project.coverImage ? (
+        <div className="relative mt-8 aspect-video overflow-hidden rounded-xl border border-hairline bg-surface-container-low shadow-xl">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={project.coverImage}
+            alt={`${project.title} interface`}
+            className="size-full object-cover"
+          />
+        </div>
+      ) : null}
       <div className="mt-6 flex flex-wrap gap-2">
         {project.technologies.map((tech) => (
           <span
@@ -611,6 +622,11 @@ function BasicProjectDetail({
             <Code2 className="size-4 text-primary" />
             GitHub
           </a>
+        ) : project.privateRepo ? (
+          <span className="inline-flex items-center gap-2 rounded-lg border border-hairline bg-surface-container px-4 py-2.5 font-mono text-xs text-on-surface-variant">
+            <Lock className="size-4 text-on-surface-variant" />
+            Private company project
+          </span>
         ) : null}
       </div>
       <section className="mt-12">

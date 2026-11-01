@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "export": "next build && next export",
+    "deploy:s3": "aws s3 sync ./out s3://YOUR_BUCKET_NAME --delete",
+    "deploy:invalidate": "aws cloudfront create-invalidation --distribution-id YOUR_DISTRIBUTION_ID --paths \"/*\""
   },
   "dependencies": {
     "@base-ui/react": "^1.9.0",

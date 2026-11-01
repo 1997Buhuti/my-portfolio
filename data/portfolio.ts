@@ -127,6 +127,8 @@ export interface Project {
   coverImage?: string;
   githubUrl?: string;
   liveUrl?: string;
+  /** True when the source is a private/company repo and has no public GitHub link. */
+  privateRepo?: boolean;
   architectureNotes: string;
   caseStudy?: CaseStudy;
 }
@@ -361,29 +363,38 @@ export const portfolioData: PortfolioData = {
       featured: true,
       year: "2025",
       accent: "primary",
-      coverImage: "/dummy-project-1.jpg",
-      liveUrl: "https://example.com/crm-demo",
-      githubUrl: "https://github.com/1997Buhuti/dummy-crm-repo",
+      coverImage: "/bodyshop-booster-login.webp",
+      liveUrl: "https://bodyshopbooster.com/",
+      privateRepo: true,
       architectureNotes:
         "Event-driven Lambda · Synthflow webhooks · SQS/SNS/EventBridge · Serverless Framework",
     },
     {
-      id: "proj-react-ecommerce",
-      slug: "react-ecommerce-platform",
-      title: "React E-Commerce Platform",
-      category: "Frontend · Training Capstone",
+      id: "proj-job-scout",
+      slug: "job-scout",
+      title: "Job Scout — AI Job Match Engine",
+      category: "Serverless · AI Aggregator",
       description:
-        "A declarative, state-managed e-commerce training application.",
+        "Automated job aggregator that scrapes listings and scores CV fit with Amazon Bedrock.",
       longDescription:
-        "A comprehensive e-commerce frontend built to apply declarative UI concepts and rigorous state management techniques. It uses React with Redux for global state, strictly typed with TypeScript, and styled responsively using SCSS and Bootstrap. This project served as the capstone for an intensive industrial training program.",
-      technologies: ["React", "Redux", "TypeScript", "SCSS", "Bootstrap"],
+        "Job Scout is an automated job aggregator and AI match engine for Sri Lankan tech portals. It lightweight-scrapes public listings with axios and cheerio, evaluates each role against a user's CV using Amazon Bedrock (Claude 3 Haiku), and delivers a concise HTML email digest via SES. The whole system runs on a minimal, cost-guarded AWS serverless footprint: a single shared EventBridge tick dispatches due users, Lambdas handle presigned S3 CV uploads, PDF parsing, scraping, Bedrock matching, and email, with DynamoDB holding profiles, jobs, and match results. Deduplication skips already-suggested jobs to avoid wasted Bedrock and SES spend.",
+      technologies: [
+        "Next.js",
+        "TypeScript",
+        "AWS Lambda",
+        "Amazon Bedrock",
+        "DynamoDB",
+        "EventBridge",
+        "Amplify Gen 2",
+      ],
       featured: true,
-      year: "2021",
+      year: "2025",
       accent: "secondary",
-      coverImage: "/dummy-project-2.jpg",
-      githubUrl: "https://github.com/1997Buhuti/dummy-ecommerce-repo",
+      coverImage: "/job-scout.webp",
+      liveUrl: "https://www.jobscout.dynv6.net/",
+      githubUrl: "https://github.com/1997Buhuti/job-scout",
       architectureNotes:
-        "Redux global store · Typed React components · SCSS + Bootstrap responsive layout",
+        "Serverless Framework v4 · Cognito auth · S3 presigned CV uploads · axios/cheerio scrapers · Bedrock Claude Haiku (300-token cap) · SES HTML digests · single EventBridge dispatcher",
     },
   ],
   contact: {
