@@ -81,16 +81,6 @@ export function Navigation() {
                 );
               })}
             </nav>
-            <div className="flex items-center gap-2">
-              <span className="hidden items-center gap-1.5 rounded-lg border border-hairline bg-surface-container px-3 py-1.5 font-mono text-xs text-on-surface-variant sm:inline-flex">
-                <Terminal className="size-4 text-primary" />
-                CMS
-              </span>
-              <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-primary text-on-primary">
-                <UserRound className="size-4" aria-hidden />
-                <span className="sr-only">Profile</span>
-              </span>
-            </div>
           </div>
         </div>
       </header>
