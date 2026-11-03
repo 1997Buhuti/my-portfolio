@@ -2,13 +2,20 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { BriefcaseBusiness, Code2, Terminal, UserRound } from "lucide-react";
+import {
+  BriefcaseBusiness,
+  Code2,
+  Layers,
+  Terminal,
+  UserRound,
+} from "lucide-react";
 
 import { portfolioData } from "@/data/portfolio";
 import { cn } from "@/lib/utils";
 
 const desktopLinks = [
   { href: "/#about", label: "About", hash: "about" },
+  { href: "/#tech-stack", label: "Stack", hash: "tech-stack" },
   { href: "/#experience", label: "Experience", hash: "experience" },
   { href: "/#projects", label: "Projects", hash: "projects" },
   { href: "/#contact", label: "Contact", hash: "contact" },
@@ -16,6 +23,7 @@ const desktopLinks = [
 
 const mobileLinks = [
   { href: "/#about", label: "About", icon: UserRound },
+  { href: "/#tech-stack", label: "Stack", icon: Layers },
   { href: "/#experience", label: "Experience", icon: BriefcaseBusiness },
   { href: "/#projects", label: "Projects", icon: Code2 },
   { href: "/#contact", label: "Contact", icon: Terminal },
