@@ -6,16 +6,13 @@ import {
   Download,
   ExternalLink,
   Mail,
-  Send,
   Terminal,
 } from "lucide-react";
 
+import { ContactForm } from "@/components/contact-form";
 import { CopyEmailButton } from "@/components/copy-email-button";
 import { GitHubIcon, LinkedInIcon } from "@/components/social-icons";
 import { TechIcon } from "@/components/tech-icon";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
 import { portfolioData } from "@/data/portfolio";
 import { cn } from "@/lib/utils";
 
@@ -591,80 +588,7 @@ export default function HomePage() {
               />
             </div>
 
-            <form
-              className="flex flex-col gap-4"
-              action={`mailto:${personal.email}`}
-              method="get"
-              encType="text/plain"
-            >
-              <div className="grid gap-4 sm:grid-cols-2">
-                <div className="flex flex-col gap-1.5">
-                  <Label
-                    htmlFor="name"
-                    className="font-mono text-[11px] tracking-wide text-on-surface-variant"
-                  >
-                    <span className="text-primary lg:hidden">$ </span>
-                    <span className="hidden lg:inline">{"// "}</span>
-                    Name
-                  </Label>
-                  <Input
-                    id="name"
-                    name="name"
-                    required
-                    placeholder="Your name"
-                    className="border-hairline bg-surface-container-high font-mono text-sm text-on-surface placeholder:text-outline focus-visible:border-primary focus-visible:ring-primary/40"
-                  />
-                </div>
-                <div className="flex flex-col gap-1.5">
-                  <Label
-                    htmlFor="email"
-                    className="font-mono text-[11px] tracking-wide text-on-surface-variant"
-                  >
-                    <span className="text-primary lg:hidden">$ </span>
-                    <span className="hidden lg:inline">{"// "}</span>
-                    Email
-                  </Label>
-                  <Input
-                    id="email"
-                    name="email"
-                    type="email"
-                    required
-                    placeholder="you@example.com"
-                    className="border-hairline bg-surface-container-high font-mono text-sm text-on-surface placeholder:text-outline focus-visible:border-primary focus-visible:ring-primary/40"
-                  />
-                </div>
-              </div>
-              <div className="flex flex-col gap-1.5">
-                <Label
-                  htmlFor="message"
-                  className="font-mono text-[11px] tracking-wide text-on-surface-variant"
-                >
-                  <span className="text-primary lg:hidden">$ </span>
-                  <span className="hidden lg:inline">{"// "}</span>
-                  Project scope &amp; timeline
-                </Label>
-                <Textarea
-                  id="message"
-                  name="body"
-                  required
-                  rows={4}
-                  placeholder="Architecture needs, team size, and target start date…"
-                  className="resize-none border-hairline bg-surface-container-high font-mono text-sm text-on-surface placeholder:text-outline focus-visible:border-primary focus-visible:ring-primary/40"
-                />
-              </div>
-              <div className="flex items-center justify-between gap-4 pt-2">
-                <p className="hidden font-mono text-[11px] text-on-surface-variant sm:block">
-                  Encrypted via TLS 1.3
-                </p>
-                <button
-                  type="submit"
-                  className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-primary px-6 py-3 font-mono text-xs font-semibold tracking-wider text-on-primary shadow-[0_0_24px_rgba(45,212,191,0.25)] transition-all hover:bg-primary-fixed active:scale-[0.98] sm:w-auto sm:rounded-lg"
-                >
-                  <Send className="size-4" />
-                  Dispatch message
-                </button>
-              </div>
-            </form>
+            <ContactForm />
           </div>
 
           <div className="flex flex-col items-center justify-between gap-2 rounded-lg border border-hairline bg-surface-container p-4 font-mono text-[11px] text-on-surface-variant shadow-sm sm:flex-row">
