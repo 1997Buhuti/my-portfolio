@@ -10,6 +10,8 @@ export interface PersonalInfo {
   title: string;
   tagline: string;
   summary: string;
+  /** Meta description for search results. Aim for about 150 to 160 characters. */
+  seoDescription: string;
   email: string;
   location: string;
   availability: string;
@@ -194,10 +196,13 @@ export const portfolioData: PortfolioData = {
       "I engineer scalable production systems, AI-driven development workflows, and human-touched software that cuts through AI slop.",
     summary:
       "Full-stack engineer specializing in Node.js, TypeScript, Angular, and AWS serverless systems. Expert in AI-driven development workflows, AI SDLC, and spec-driven development, with a focus on replacing AI slop with human-crafted, production-ready software.",
+    seoDescription:
+      "AWS Community Builder and full-stack engineer building Next.js, TypeScript, Node.js, and AWS serverless systems. Open to remote roles and collaborations.",
     email: "dp.manakal82@gmail.com",
     location: "Sri Lanka · Remote",
     availability: "Open to opportunities & collaborations",
-    resumeUrl: "/resume.pdf",
+    resumeUrl:
+      "https://drive.google.com/uc?export=download&id=1YosnNbwYHB7Kx9YFK5r5ZP6j9BKtAXQY",
     avatarUrl:
       "https://lh3.googleusercontent.com/aida-public/AB6AXuBHVLxSGvN9vAdaqAiYeI-7ZcAmrLzjtealSiqLB0KZpfZYkW_NK59Wmzbis3NTTkd4lrh_ak6dcRNOzBwZI_7hjItfEfnI6AMp501btDH7SIPVS5qaeIoDLDVAasOwaHNfR-nggr5aZr8fC8aCwAMMvIiDjIJYLjvqQDYJWUDbJW1rElUxdSCayV3A5t_s5-kt0OXfHKdfyyriApU6ZC9fa47WPaScwPk_J5ajPinuCZA3TPIFOsqp",
     socials: [

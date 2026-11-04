@@ -220,7 +220,7 @@ export function ProjectDetail({ project }: ProjectDetailProps) {
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={caseStudy.coverImage}
-                  alt=""
+                  alt={`${project.title} case study image`}
                   className="size-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-surface via-surface/40 to-transparent" />

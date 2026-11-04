@@ -13,8 +13,21 @@ import { ContactForm } from "@/components/contact-form";
 import { CopyEmailButton } from "@/components/copy-email-button";
 import { GitHubIcon, LinkedInIcon } from "@/components/social-icons";
 import { TechIcon } from "@/components/tech-icon";
+import { articles } from "@/data/articles";
 import { portfolioData } from "@/data/portfolio";
+import { SITE_URL } from "@/lib/site";
 import { cn } from "@/lib/utils";
+
+const articleDateFormat = new Intl.DateTimeFormat("en-US", {
+  year: "numeric",
+  month: "short",
+  day: "numeric",
+  timeZone: "UTC",
+});
+
+const mediumHref =
+  portfolioData.personal.socials.find((social) => social.icon === "medium")?.href ??
+  "https://medium.com/@dp.manakal82";
 
 const accentText = {
   primary: "text-primary",
@@ -49,8 +62,38 @@ export default function HomePage() {
   const featuredProjects = projects.filter((project) => project.featured);
   const primaryEducation = education[0];
 
+  const personJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: personal.name,
+    jobTitle: personal.title,
+    description: personal.seoDescription,
+    url: `${SITE_URL}/`,
+    sameAs: [
+      ...personal.socials
+        .filter((social) => !social.href.startsWith("mailto:"))
+        .map((social) => social.href),
+      mediumHref,
+    ],
+    knowsAbout: [
+      "Next.js",
+      "TypeScript",
+      "Node.js",
+      "Angular",
+      "AWS Lambda",
+      "Serverless architecture",
+      "Spec-driven development",
+    ],
+  };
+
   return (
     <div className="relative w-full overflow-hidden bg-surface">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(personJsonLd).replace(/</g, "\\u003c"),
+        }}
+      />
       <div
         aria-hidden
         className="pointer-events-none absolute -top-40 left-1/2 h-[600px] w-[800px] -translate-x-1/2 rounded-full bg-primary/5 blur-[160px]"
@@ -100,6 +143,9 @@ export default function HomePage() {
 
           <div className="flex max-w-3xl flex-col gap-4">
             <h1 className="font-sans text-[36px] leading-[44px] font-bold tracking-tight text-on-surface lg:text-[42px] lg:leading-[50px]">
+              <span className="block pb-2 font-mono text-sm font-medium tracking-wider text-primary uppercase lg:text-base">
+                {personal.name}
+              </span>
               {personal.tagline}
             </h1>
             <p className="max-w-2xl font-mono text-sm leading-[22px] text-on-surface-variant lg:mx-auto lg:text-base lg:leading-[26px]">
@@ -113,6 +159,7 @@ export default function HomePage() {
           <div className="flex flex-wrap items-center gap-2 lg:justify-center lg:gap-3">
             <a
               href={personal.resumeUrl}
+              download="Resume.pdf"
               className="inline-flex items-center gap-2 rounded-full bg-primary px-4 py-2.5 font-mono text-xs font-semibold tracking-wider text-on-primary shadow-[0_0_18px_rgba(45,212,191,0.25)] transition-transform active:scale-95 lg:rounded-lg lg:px-5 lg:shadow-lg lg:shadow-primary/20 lg:hover:bg-primary-fixed"
             >
               <Download className="size-4" />
@@ -424,7 +471,7 @@ export default function HomePage() {
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                       src={project.coverImage}
-                      alt=""
+                      alt={`${project.title} cover image`}
                       className="size-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                     <div
@@ -550,13 +597,76 @@ export default function HomePage() {
         </section>
 
         <section
+          id="articles"
+          className="scroll-mt-24 flex flex-col gap-6 lg:gap-8"
+        >
+          <div className="flex items-center justify-between border-b border-hairline pb-4">
+            <div className="flex items-center gap-3">
+              <span className="font-mono text-sm font-bold text-primary">
+                05 //
+              </span>
+              <h2 className="font-sans text-xl font-semibold tracking-wider text-on-surface uppercase sm:text-2xl">
+                Articles
+              </h2>
+              <span className="rounded-full bg-primary/10 px-2 py-0.5 font-mono text-[11px] font-semibold text-primary">
+                ({String(articles.length).padStart(2, "0")})
+              </span>
+            </div>
+            <a
+              href={mediumHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group hidden items-center gap-1.5 font-mono text-[11px] text-primary hover:underline sm:flex"
+            >
+              All on Medium
+              <ArrowUpRight className="size-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </a>
+          </div>
+          <div className="grid gap-4 sm:grid-cols-2">
+            {articles.map((article) => (
+              <a
+                key={article.id}
+                href={article.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex flex-col justify-between gap-4 rounded-xl border border-hairline bg-surface-container-low p-5 shadow-md transition-all duration-300 hover:border-primary/30 hover:bg-surface-container/70"
+              >
+                <div className="flex flex-col gap-3">
+                  <time
+                    dateTime={article.publishedAt}
+                    className="font-mono text-[11px] tracking-wider text-on-surface-variant uppercase"
+                  >
+                    {articleDateFormat.format(new Date(article.publishedAt))}
+                  </time>
+                  <h3 className="font-sans text-base leading-snug font-semibold text-on-surface transition-colors group-hover:text-primary">
+                    {article.title}
+                  </h3>
+                  <ul className="flex flex-wrap gap-1.5">
+                    {article.tags.map((tag) => (
+                      <li
+                        key={tag}
+                        className="rounded bg-surface-container-high px-2 py-0.5 font-mono text-[10px] tracking-wide text-on-surface-variant"
+                      >
+                        {tag}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <span className="inline-flex items-center gap-1.5 font-mono text-xs text-primary">
+                  Read on Medium
+                  <ArrowUpRight className="size-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                </span>
+              </a>
+            ))}
+          </div>
+        </section>        <section
           id="contact"
           className="scroll-mt-24 flex flex-col gap-6 pb-8 lg:gap-8"
         >
           <div className="flex items-center justify-between border-b border-hairline pb-4">
             <div className="flex items-center gap-3">
               <span className="font-mono text-sm font-bold text-primary">
-                05 //
+                06 //
               </span>
               <h2 className="font-sans text-xl font-semibold tracking-wider text-on-surface uppercase sm:text-2xl">
                 Get In Touch

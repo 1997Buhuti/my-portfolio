@@ -18,6 +18,7 @@ const desktopLinks = [
   { href: "/#tech-stack", label: "Stack", hash: "tech-stack" },
   { href: "/#experience", label: "Experience", hash: "experience" },
   { href: "/#projects", label: "Projects", hash: "projects" },
+  { href: "/#articles", label: "Articles", hash: "articles" },
   { href: "/#contact", label: "Contact", hash: "contact" },
 ] as const;
 
