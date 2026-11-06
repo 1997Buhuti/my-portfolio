@@ -11,7 +11,7 @@ import {
 
 import { ContactForm } from "@/components/contact-form";
 import { CopyEmailButton } from "@/components/copy-email-button";
-import { GitHubIcon, LinkedInIcon } from "@/components/social-icons";
+import { GitHubIcon, LinkedInIcon, MediumIcon } from "@/components/social-icons";
 import { TechIcon } from "@/components/tech-icon";
 import { articles } from "@/data/articles";
 import { portfolioData } from "@/data/portfolio";
@@ -186,6 +186,8 @@ export default function HomePage() {
                   <GitHubIcon className="size-4" />
                 ) : social.icon === "linkedin" ? (
                   <LinkedInIcon className="size-4" />
+                ) : social.icon === "medium" ? (
+                  <MediumIcon className="size-4" />
                 ) : social.icon === "email" ? (
                   <Mail className="size-4" />
                 ) : (
