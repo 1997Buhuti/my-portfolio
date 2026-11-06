@@ -203,8 +203,7 @@ export const portfolioData: PortfolioData = {
     availability: "Open to opportunities & collaborations",
     resumeUrl:
       "https://drive.google.com/uc?export=download&id=1YosnNbwYHB7Kx9YFK5r5ZP6j9BKtAXQY",
-    avatarUrl:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuBHVLxSGvN9vAdaqAiYeI-7ZcAmrLzjtealSiqLB0KZpfZYkW_NK59Wmzbis3NTTkd4lrh_ak6dcRNOzBwZI_7hjItfEfnI6AMp501btDH7SIPVS5qaeIoDLDVAasOwaHNfR-nggr5aZr8fC8aCwAMMvIiDjIJYLjvqQDYJWUDbJW1rElUxdSCayV3A5t_s5-kt0OXfHKdfyyriApU6ZC9fa47WPaScwPk_J5ajPinuCZA3TPIFOsqp",
+    avatarUrl: "/66108524.png",
     socials: [
       {
         label: "GitHub",
@@ -215,6 +214,11 @@ export const portfolioData: PortfolioData = {
         label: "LinkedIn",
         href: "https://linkedin.com/in/dpbmanakal",
         icon: "linkedin",
+      },
+      {
+        label: "Medium",
+        href: "https://medium.com/@dp.manakal82",
+        icon: "medium",
       },
       {
         label: "Email",
